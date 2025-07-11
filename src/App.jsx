@@ -1,10 +1,11 @@
-import './App.css'
-// import GameBoard from './components/GameBoard';
+import './css/App.css'
+import GameBoard from './components/GameBoard';
+
 function App() {
   return (
-    <div class="container">
+    <div className="container">
       <h1>Sequencial Memory Challenge</h1>
-      {/* <GameBoard /> */}
+      <GameBoard />
     </div>
   )
 }

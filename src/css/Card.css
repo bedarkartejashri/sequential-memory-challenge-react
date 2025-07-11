@@ -1,0 +1,40 @@
+/* Base card styles */
+.card {
+    position: relative;
+    transition: 0.5s transform ease-in;
+    transform-style: preserve-3d;
+}
+
+/* Flip animation: rotate the card on the Y axis */
+.card.is-flipped {
+    transform: rotateY(180deg);
+}
+
+/* Shared side styles for both front and back */
+.card-side {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+}
+
+/* front side of the card: shows the image */
+.card-side.is-front {
+    background-color: lightsteelblue;
+    color: darkmagenta;
+    transform: rotateY(180deg);
+}
+
+/* back side of the card */
+.card-side.is-back {
+    background-color: blueviolet;
+    color: black;
+}
+
+.card-number {
+    font-family: fantasy;
+}

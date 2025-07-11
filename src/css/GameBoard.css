@@ -1,0 +1,40 @@
+.game-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.left-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.right-section {
+  max-width: 300px;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+}
+
+.right-section h2 {
+  margin-top: 0;
+  color: white;
+  font-family: fantasy;
+}
+
+.right-section ul {
+  padding-left: 20px;
+  text-align: left;
+}
+
+/* The game grid layout with 4 rows and 4 columns */
+.game-board {
+  display: grid;
+  grid-template-rows: repeat(3, 110px);
+  grid-template-columns: repeat(4, 110px);
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
+  justify-content: center;
+}
