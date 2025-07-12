@@ -1,12 +1,15 @@
-# React + Vite
+# Sequential Memory Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Sequential Memory Challenge game built using React.js
+A simple memory game where players must reveal cards in sequential order from 1 to 12. If they select the wrong card, all cards reset and they must start over from 1. The challenge tests focus, memory, and number sequence recall.
 
-Currently, two official plugins are available:
+# Tech Stack
+- React.js
+- HTML
+- CSS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Install Node.js dependencies
+npm install
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Start the frontend server
+npm run dev
