@@ -31,7 +31,7 @@
 
 /* back side of the card */
 .card-side.is-back {
-    background-color: blueviolet;
+    background: radial-gradient(circle at center, blueviolet 0%, indigo 100%);
     color: black;
 }
 

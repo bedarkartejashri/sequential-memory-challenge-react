@@ -3,7 +3,7 @@
 //   Description: A memory matching game board with card flipping logic.
 //   Author: Tejashri Bedarkar
 //   Created: 2025-07-11
-//   Last Updated: 2025-07-11
+//   Last Updated: 2025-07-12
 // ==========================================================================
 
 import { useEffect, useState } from 'react';
@@ -19,6 +19,9 @@ export default function GameBoard () {
     const [gameStatus, setGameStatus] = useState('');
     const [disableClick, setDisableClick] = useState(false);
 
+    /**
+     * Resets the game on initial load
+     */
     useEffect(() => {
         resetGame();
     }, []);
@@ -67,6 +70,7 @@ export default function GameBoard () {
         );
         setCards(flippedCards);
 
+        // If the clicked card matches the expected number
         if (clickedCard.value === expectedNext) {
             const next = expectedNext + 1;
             setExpectedNext(next);
@@ -76,6 +80,7 @@ export default function GameBoard () {
                 setDisableClick(true);
             }
         } else {
+            // Wrong sequence flip back all cards.
             setDisableClick(true);
             setTimeout(() => {
                 const flipBackCards = cards.map((card) => ({ ...card, visible: false }));
