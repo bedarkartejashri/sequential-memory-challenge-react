@@ -21,7 +21,9 @@ export default function Card({
     * Passes its id and value to the parent
     */
     const chooseCard = () => {
-        
+        if (!disabled && !visible) {
+            onClick({ id, value });
+        }
     }
 
     return (

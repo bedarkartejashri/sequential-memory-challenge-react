@@ -16,9 +16,30 @@ export default function GameBoard () {
 
     const [cards, setCards] = useState([]);
     const [expectedNext, setExpectedNext] = useState(1);
+    const [gameStatus, setGameStatus] = useState('');
+    const [disableClick, setDisableClick] = useState(false);
 
     useEffect(() => {
-        const cardValue = cardItems.map((value, index) => ({
+        resetGame();
+    }, []);
+
+    /**
+     * Shuffles the cards randomly
+     */
+    const shuffleCards = (cardItems) => {
+        return cardItems.sort(() => Math.random() - 0.5);
+    }
+
+    /**
+     * Resets the entire game:
+     * - enables card clicks
+     * - shuffles the cards
+     * - resets
+     */
+    const resetGame = () => {
+        const shuffle = shuffleCards(cardItems);
+
+        const cardValue = shuffle.map((value, index) => ({
             id: index,
             value: value,
             visible: false
@@ -26,7 +47,45 @@ export default function GameBoard () {
 
         setCards(cardValue);
         setExpectedNext(1);
-    }, []);
+        setGameStatus('');
+        setDisableClick(false);
+    }
+
+    /**
+     * Handles Flip Card Event.
+     * @param clickedCard - information of clicked card.
+     */
+    const flipCard = (clickedCard) => {
+        if (disableClick) return;
+        
+        // if already flipped, ignore
+        if (clickedCard.visible) return;
+
+        // Allow flipping
+        const flippedCards = cards.map((card) =>
+            card.id === clickedCard.id ? { ...card, visible: true } : card
+        );
+        setCards(flippedCards);
+
+        if (clickedCard.value === expectedNext) {
+            const next = expectedNext + 1;
+            setExpectedNext(next);
+
+            if (next > cardItems.length) {
+                setGameStatus('You Win!');
+                setDisableClick(true);
+            }
+        } else {
+            setDisableClick(true);
+            setTimeout(() => {
+                const flipBackCards = cards.map((card) => ({ ...card, visible: false }));
+                setCards(flipBackCards);
+                setExpectedNext(1);
+                setGameStatus('');
+                setDisableClick(false);
+            }, 500);
+        }
+    }
 
     return (
         <div className="game-container">
@@ -34,9 +93,12 @@ export default function GameBoard () {
             <div className="game-board">
                 {/* Dynamically create cards */}
                 { cards.map((card) => (
-                    <Card key={card.id} value={card.value} visible={card.visible} />
+                    <Card key={card.id} value={card.value} visible={card.visible} onClick={() => flipCard(card)} />
                 ))}
             </div>
+            {/* Show the game status and a reset button */}
+            <h3>{ gameStatus }</h3>
+            <button id="reset_button" onClick={resetGame}>Reset Game</button>
         </div>
 
         <div className="right-section">
